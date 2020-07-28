@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<launch>
+
+        <!-- include gazebo_ros launcher -->
+        <include file="$(find gazebo_ros)/launch/empty_world.launch">
+                <arg name="world_name" value="$(find my_simulations)/src/worlds/empty_world.world" />
+                <arg name="debug" value="false" />
+                <arg name="gui" value="true" />
+                <arg name="paused" value="false" />
+                <arg name="use_sim_time" value="true" />
+        </include>
+
+        <param name="robot_description" command= "$(find xacro)/xacro.py $(find mazerunnerbot)/urdf/bot.urdf.xacro" />
+
+        <!-- spawn node -->
+        <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"  output="screen" 
+                args= "-param robot_description -urdf -model bot -x 0.099 -y -0.099 -z 0.1 -R 0 -P 0 -Y -1.57">
+                <!-- x=0.099 and y = 0.099 is the center of the cell-->>
+        </node>
+                
+                        
+                
+</launch>

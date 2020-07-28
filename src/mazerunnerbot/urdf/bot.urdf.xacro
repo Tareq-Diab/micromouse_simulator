@@ -1,0 +1,215 @@
+<?xml version='1.0'?>
+
+<robot name="myrobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+
+<xacro:property name="camera_link" value="0.01"/>
+<xacro:property name="camera_mass" value="0.01"/>
+
+
+<xacro:include filename="$(find mazerunnerbot)/urdf/materials.xacro"/>
+<xacro:include filename="$(find mazerunnerbot)/urdf/bot.gazebo"/>
+
+
+  <link name='chassis'>
+    <pose>0 0 0.1 0 0 0</pose>
+
+    <inertial>
+      <mass value="0.5"/>
+      <origin xyz="0.0 0 0.1" rpy=" 0 0 0"/>
+      <inertia
+          ixx="0.0003541666667" ixy="0" ixz="0"
+          iyy="0.0003541666667" iyz="0"
+          izz="0.000675"
+      />
+    </inertial>
+
+    <collision name='collision'>
+      <geometry>
+        <box size=".09 .08 .02"/>
+      </geometry>
+    </collision>
+
+    <visual name='chassis_visual'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <geometry>
+        <box size=".09 .09 .02"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+
+
+  </link>
+
+
+  <link name="caster_weel">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.000009" ixy="0.0" ixz="0.0" iyy="0.000009" iyz="0.0" izz="0.000009"/>
+    </inertial>
+
+    <visual name="">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+       <sphere radius="0.015"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 0.0 0.0 1.0"/>
+        <texture filename=""/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+       <sphere radius="0.015"/>
+      </geometry>
+      <!-- <surface>
+        <friction>
+          <ode>
+            <mu>0</mu>
+            <mu2>0</mu2>
+            <slip1>1.0</slip1>
+            <slip2>1.0</slip2>
+          </ode>
+        </friction>
+      </surface> -->
+    </collision>
+  </link>
+
+  <joint name="caster_joint" type="fixed">
+    <origin xyz="-0.04 0 -0.015" rpy="0.0 0.0 0.0"/>
+    <parent link="chassis"/>
+    <child link="caster_weel"/>
+    <axis xyz="0.0 0.0 0.0"/>
+    
+  </joint> -
+
+  <link name="left_wheel">
+    <!--origin xyz="0.1 0.13 0.1" rpy="0 1.5707 1.5707"/-->
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.015"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+
+          </ode>
+        </friction>
+      </surface> 
+    </collision>
+    <visual name="left_wheel_visual">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.02"/>
+        
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <mass value="0.1"/>
+      <inertia
+        ixx=".0000225" ixy="0.0" ixz="0.0"
+        iyy=".0000225" iyz="0.0"
+        izz=".000045"/>
+    </inertial>
+  </link>
+
+  <link name="right_wheel">
+    <!--origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/-->
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.02"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+
+          </ode>
+        </friction>
+      </surface> 
+    </collision>
+    <visual name="right_wheel_visual">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.02"/>
+        
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <mass value="0.1"/>
+      <inertia
+        ixx=".0000225" ixy="0.0" ixz="0.0"
+        iyy=".0000225" iyz="0.0"
+        izz=".000045"/>
+    </inertial>
+  </link>
+<gazebo reference="right_wheel">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp> 
+  <kd>100.0</kd>
+  <minDepth>0.001</minDepth>
+  <maxVel>1.0</maxVel>
+</gazebo>
+
+<gazebo reference="left_wheel">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp> 
+  <kd>100.0</kd>
+  <minDepth>0.001</minDepth>
+  <maxVel>1.0</maxVel>
+</gazebo>
+
+<gazebo reference="caster_weel">
+  <mu1>0</mu1>
+  <mu2>0</mu2>
+  <slip1>1.0</slip1>
+  <slip2>1.0</slip2>
+</gazebo>
+
+  <joint type="continuous" name="left_wheel_hinge">
+    <origin xyz="0.02 0.04 0" rpy="0 0 0"/>
+    <!--origin xyz="0.1 0.13 0" rpy="0 1.5707 1.5707"/-->
+    <child link="left_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <!-- <limit effort="10000" velocity="1000"/> -->
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <joint type="continuous" name="right_wheel_hinge">
+    <origin xyz="0.02 -0.04 0" rpy="0 0 0"/>
+    <!--origin xyz="0.1 -0.13 0" rpy="0 1.5707 1.5707"/-->
+    <child link="right_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <!-- <limit effort="10000" velocity="1000"/> -->
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+
+
+
+  
+  
+
+
+
+
+</robot>
+
