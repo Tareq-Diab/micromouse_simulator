@@ -30,6 +30,6 @@ movements.
 ![figure 1](https://github.com/Tariq96/micromouse_simulator/blob/master/images/p_controller_response.png)
 
 # Refrences
-     1- http://gazebosim.org/tutorials
-     2- http://wiki.ros.org/ROS/Tutorials
+   1- http://gazebosim.org/tutorials
+   2- http://wiki.ros.org/ROS/Tutorials
     
