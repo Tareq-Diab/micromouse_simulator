@@ -14,4 +14,9 @@ The file Tree is devided into two main folders each folder represent a package :
 my_simulation folder contains the launch file forthe gazebo and the world data, mazebot folder contains the robot urdf/xacro file and all the robot ros nodes used for movement, navigation and observation. These nodes are used to communicate with the decision making layer of the physical robot algorithm to simulate the robot's interaction with the gazebo environment. in summary these nodes will provide the algorithm to be simulated with localization data and distance sensors readings. and recieves from the robot the coordinates to which the robot should move or the next movement in the grid. the next figure demonstrate the data flow between the nodes and algorithm.
 
  ![figure 1](https://github.com/Tariq96/micromouse_simulator/blob/master/images/node-algorithm%20dataflow.jpg)
+ 
+ The localizer node is deseined with a P-controllerr to controll the linear and angullar speed of the robot with a Kp set as a variable in the localizer.py file , you can change it with your own values after tuning them on your own robot if you changed the robot configurations.
+ 
+#### P-controller Diagram
+ ![figure 1](https://github.com/Tariq96/micromouse_simulator/blob/master/images/P-controller.jpg)
 
