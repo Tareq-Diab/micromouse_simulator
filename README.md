@@ -20,3 +20,5 @@ my_simulation folder contains the launch file forthe gazebo and the world data, 
 #### P-controller Diagram
  ![figure 1](https://github.com/Tariq96/micromouse_simulator/blob/master/images/P-controller.jpg)
 
+the next graph demonstrate p-controller response for moving from  cell [0,0] to cell [5,0] ,notice that the response in the grapgh is for the linear error only the anguler error is not show in the grapgh as  it's irrelevent becouse the movement is mostly linear and anguler controller is used to compensate slipping of the wheel and unwanted anguler movements.
+![figure 1](https://github.com/Tariq96/micromouse_simulator/blob/master/images/p_controller_response.png)
