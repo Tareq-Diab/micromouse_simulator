@@ -4,6 +4,9 @@ This is a simulator for micromouse competition held by IEEE-HTI Student branch
 This simulation is based on gazebo and ros.The maze itself is designed on solidworks and exported as stl file added to .world file to be launched as the default maze . you can add your custom maze by modifing the maze.sldprt and export it as stl to the meshes directory. 
 The robot is written as a xacro file to silulate an abstract version of the real robot and can be easily modified by changing the dimension in the file.
 
+![show](https://user-images.githubusercontent.com/28588004/88641652-c6bfa200-d0bf-11ea-97bc-cd69da7c10a0.gif)
+
+
 The file Tree is devided into two main folders each folder represent a package : 
 /src
      /my_simulation
